@@ -28,42 +28,38 @@ if st.button('ヘルプ'):
 
 # 入力値の選択
 input1 = st.checkbox("入力 1 (0 または 1)", value=False)
-input2 = st.checkbox("入力 2 (0 または 1)", value=False) if gate != 'NOT' else None
+input2 = None
+if gate != 'NOT':
+    input2 = st.checkbox("入力 2 (0 または 1)", value=False)
 
 # 回路図の描画
-def draw_logic_circuit(gate, input1, input2):
-    fig, ax = plt.subplots()  # 図と軸のオブジェクトを作成
-    G = nx.DiGraph()
-    G.add_node("入力1", pos=(0, 1))
-    if gate != 'NOT':
-        G.add_node("入力2", pos=(0, 0))
-    G.add_node(gate, pos=(1, 0.5))
-    G.add_node("出力", pos=(2, 0.5))
+fig, ax = plt.subplots()
+G = nx.DiGraph()
+G.add_node("入力1", pos=(0, 1))
+if gate != 'NOT':
+    G.add_node("入力2", pos=(0, 0))
+G.add_node(gate, pos=(1, 0.5))
+G.add_node("出力", pos=(2, 0.5))
 
-    G.add_edge("入力1", gate)
-    if gate != 'NOT':
-        G.add_edge("入力2", gate)
-    G.add_edge(gate, "出力")
+G.add_edge("入力1", gate)
+if gate != 'NOT':
+    G.add_edge("入力2", gate)
+G.add_edge(gate, "出力")
 
-    pos = nx.get_node_attributes(G, 'pos')
-    nx.draw(G, pos, with_labels=True, arrows=True)
+pos = nx.get_node_attributes(G, 'pos')
+nx.draw(G, pos, with_labels=True, arrows=True)
 
-    return fig  # 図を返す
-
-# 描画した回路図を表示
-fig = draw_logic_circuit(gate, input1, input2)
 st.pyplot(fig)
 
-# 結果の計算
+# 結果の計算と表示
 result = None
 if gate == 'AND':
-    result = input1 and input2
+    result = input1 and (input2 if input2 is not None else True)
 elif gate == 'OR':
-    result = input1 or input2
+    result = input1 or (input2 if input2 is not None else False)
 elif gate == 'NOT':
     result = not input1
 
-# 出力の表示
 st.header(f'出力（F）: {int(result)}')
 
 # Copyright表示
