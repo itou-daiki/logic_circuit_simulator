@@ -15,36 +15,36 @@ input2 = st.checkbox("入力 2 (0 または 1)", value=False) if gate != 'NOT' e
 if st.button("計算"):
     if gate == 'AND':
         if not input1 and not input2:
-            image = Image.open('/mnt/data/AND00.png')
+            image = Image.open('AND00.png')
             result = False
         elif not input1 and input2:
-            image = Image.open('/mnt/data/AND01.png')
+            image = Image.open('AND01.png')
             result = False
         elif input1 and not input2:
-            image = Image.open('/mnt/data/AND10.png')
+            image = Image.open('AND10.png')
             result = False
         elif input1 and input2:
-            image = Image.open('/mnt/data/AND11.png')
+            image = Image.open('AND11.png')
             result = True
     elif gate == 'OR':
         if not input1 and not input2:
-            image = Image.open('/mnt/data/OR00.png')
+            image = Image.open('OR00.png')
             result = False
         elif not input1 and input2:
-            image = Image.open('/mnt/data/OR01.png')
+            image = Image.open('OR01.png')
             result = True
         elif input1 and not input2:
-            image = Image.open('/mnt/data/OR10.png')
+            image = Image.open('OR10.png')
             result = True
         elif input1 and input2:
-            image = Image.open('/mnt/data/OR11.png')
+            image = Image.open('OR11.png')
             result = True
     elif gate == 'NOT':
         if not input1:
-            image = Image.open('/mnt/data/NOT0.png')
+            image = Image.open('NOT0.png')
             result = True
         else:
-            image = Image.open('/mnt/data/NOT1.png')
+            image = Image.open('NOT1.png')
             result = False
 
     # 画像と計算結果の表示
