@@ -48,4 +48,4 @@ elif gate == 'NOT':
 
 # 画像と計算結果の表示
 st.image(image, caption=f'{gate} gate with input {input1} {"and " + str(input2) if gate != "NOT" else ""}')
-st.write(f'出力: {int(result)}')
+st.subheader(f'出力: {int(result)}')
