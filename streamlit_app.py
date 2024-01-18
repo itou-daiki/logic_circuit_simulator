@@ -1,6 +1,11 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+import japanize_matplotlib
 import networkx as nx
+
+# フォントの設定
+font_path = 'ipaexg.ttf'
+plt.rcParams['font.family'] = 'IPAexGothic'
 
 # Streamlitアプリの設定
 st.set_page_config(page_title="論理回路シミュレータ")
