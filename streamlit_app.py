@@ -1,5 +1,4 @@
 import streamlit as st
-from PIL import Image
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -28,6 +27,7 @@ input2 = st.checkbox("入力 2 (0 または 1)", value=False) if gate != 'NOT' e
 
 # 回路図の描画
 def draw_logic_circuit(gate, input1, input2):
+    plt.figure()  # 新しい図を初期化
     G = nx.DiGraph()
     G.add_node("入力1", pos=(0, 1))
     if gate != 'NOT':
@@ -43,7 +43,7 @@ def draw_logic_circuit(gate, input1, input2):
     pos = nx.get_node_attributes(G, 'pos')
     nx.draw(G, pos, with_labels=True, arrows=True)
 
-    plt.show()
+    st.pyplot()  # Streamlitで図を表示
 
 draw_logic_circuit(gate, input1, input2)
 
