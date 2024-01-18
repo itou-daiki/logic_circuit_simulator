@@ -47,6 +47,6 @@ elif gate == 'NOT':
         result = False
 
 # 画像と計算結果の表示
-caption_text = f'{gate} ゲート、入力: {input1}' + (f' と {input2}' if gate != "NOT" else '')
+caption_text = f'【{gate} 回路】、入力: {input1}' + (f' と {input2}' if gate != "NOT" else '')
 st.image(image, caption=caption_text)
 st.header(f'出力（F）: {int(result)}')
