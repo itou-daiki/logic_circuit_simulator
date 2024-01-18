@@ -1,8 +1,11 @@
 import streamlit as st
 from PIL import Image
 
+st.set_page_config(page_title="論理回路シミュレータ")
+
 # アプリケーションのタイトルを設定
 st.title("論理回路シミュレータ")
+st.caption("Created by Dit-Lab.(Daiki Ito)")
 
 # 論理ゲートの選択
 gate = st.selectbox("論理回路を選択", ["AND", "OR", "NOT"])
@@ -50,3 +53,6 @@ elif gate == 'NOT':
 caption_text = f'【{gate} 回路】、入力: {input1}' + (f' と {input2}' if gate != "NOT" else '')
 st.image(image, caption=caption_text)
 st.header(f'出力（F）: {int(result)}')
+
+# Copyright
+st.markdown('© 2022-2023 Dit-Lab.(Daiki Ito). All Rights Reserved.')
