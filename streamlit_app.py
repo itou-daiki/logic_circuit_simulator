@@ -32,7 +32,7 @@ input2 = st.checkbox("入力 2 (0 または 1)", value=False) if gate != 'NOT' e
 
 # 回路図の描画
 def draw_logic_circuit(gate, input1, input2):
-    plt.figure()  # 新しい図を初期化
+    fig, ax = plt.subplots()  # 図と軸のオブジェクトを作成
     G = nx.DiGraph()
     G.add_node("入力1", pos=(0, 1))
     if gate != 'NOT':
@@ -48,9 +48,11 @@ def draw_logic_circuit(gate, input1, input2):
     pos = nx.get_node_attributes(G, 'pos')
     nx.draw(G, pos, with_labels=True, arrows=True)
 
-    st.pyplot()  # Streamlitで図を表示
+    return fig  # 図を返す
 
-draw_logic_circuit(gate, input1, input2)
+# 描画した回路図を表示
+fig = draw_logic_circuit(gate, input1, input2)
+st.pyplot(fig)
 
 # 結果の計算
 result = None
